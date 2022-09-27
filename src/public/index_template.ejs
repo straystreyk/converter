@@ -9,6 +9,9 @@
     <meta id="og-title" property="og:title" content="__META_OG_TITLE__" />
     <meta id="og-image" property="og:image" content="__META_OG_IMAGE__" />
     <link rel="icon" type="image/ico" href="./favicon.ico"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <%if(locals.css) {%>
     <%locals.css.forEach(style => {%>
     <link rel="stylesheet" href=<%=style%>>
@@ -17,7 +20,9 @@
     <title>__META_TITLE__</title>
 </head>
 <body>
+<div id="notify-portal"></div>
 <div id="app"></div>
+
 
 <script type="text/javascript">
   window._GLOBALS_ =
