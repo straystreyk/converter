@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Converter } from "./Converter";
+import { Notify } from "./Notify";
 
 export const App: React.FC = () => {
   return (
@@ -8,6 +9,7 @@ export const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Converter />} />
       </Routes>
+      <Notify />
     </>
   );
 };

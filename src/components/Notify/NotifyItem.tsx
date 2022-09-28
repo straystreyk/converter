@@ -1,10 +1,23 @@
 import React from "react";
+import { INotifyItem } from "../../@types/notify";
 
-export const NotifyItem = () => {
-  return (
-    <div className="modal">
-      <span className="message">hi</span>
-      <button>Close</button>
-    </div>
-  );
-};
+import styles from "../../styles/notify.module.scss";
+import { useNotify } from "../../hooks/notify";
+
+export const NotifyItem: React.FC<INotifyItem & { index: number }> = React.memo(
+  ({ text, index, id }) => {
+    const { removeNotify } = useNotify();
+
+    return (
+      <div
+        style={{ transform: `translateY(-${index * 100}%)` }}
+        className={styles.notifyItem}
+      >
+        <span>{text}</span>
+        <button onClick={() => removeNotify(id)}>Close</button>
+      </div>
+    );
+  }
+);
+
+NotifyItem.displayName = "NotifyItem";

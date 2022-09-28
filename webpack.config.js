@@ -117,7 +117,7 @@ const ClientConfig = {
   entry: path.join(__dirname, "src", "index.tsx"),
   output: {
     path: path.join(__dirname, "build/client"),
-    filename: "js/[name].[contenthash:8].js",
+    filename: isDev ? "js/[name].js" : "js/[name].[contenthash:8].js",
     publicPath: "/",
   },
   mode: isDev ? "development" : "production",

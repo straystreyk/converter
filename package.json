@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"npm run watch:build\" \"npm run watch:server\"",
+    "dev:client": "concurrently \"npm run watch:build\" \"npm run watch:server:client\"",
+    "dev:server": "concurrently \"npm run watch:build\" \"npm run watch:server\"",
     "watch:build": "cross-env NODE_ENV=development webpack --watch",
-    "watch:server": "cross-env NODE_ENV=development nodemon ./build/server/index.js --watch",
+    "watch:server:client": "cross-env NODE_ENV=development node ./build/server/index.js",
+    "watch:server": "cross-env NODE_ENV=development nodemon ./build/server/index.js",
     "build": "cross-env NODE_ENV=production webpack"
   },
   "author": "Tigran Tskanyan <tskanyan@nanosemantics.ai>",
@@ -52,6 +54,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",

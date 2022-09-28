@@ -3,10 +3,12 @@ import {
   type PreloadedState,
   type StateFromReducersMapObject,
 } from "@reduxjs/toolkit";
-import { counterReducers } from "./counterSlice";
+import { counterReducers } from "./slices/counterSlice";
+import { notifyReducers } from "./slices/notifySlices";
 
 const reducer = {
   counter: counterReducers,
+  notify: notifyReducers,
 };
 
 export const initStore = (preloadedState?: PreloadedStateType) =>

@@ -1,15 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { NotifyProps } from "../../@types/notify";
 import { NotifyItem } from "./NotifyItem";
+import { useSelector } from "../../hooks/redux/common";
 
-export const Notify: React.FC<NotifyProps> = ({ isOpen }) => {
-  if (!isOpen || typeof window !== "object") return null;
+export const Notify = React.memo(() => {
+  const items = useSelector((state) => state.notify.items);
+  if (!items.length || typeof window !== "object") return null;
 
   return ReactDOM.createPortal(
     <>
-      <NotifyItem />
+      {items.map((notify, index) => (
+        <NotifyItem key={index} index={index} {...notify} />
+      ))}
     </>,
     document.getElementById("notify-portal") as HTMLElement
   );
-};
+});
+
+Notify.displayName = "Notify";
