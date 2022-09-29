@@ -11,7 +11,7 @@ export const NotifyItem: React.FC<INotifyItem & { index: number }> = React.memo(
     return (
       <div
         style={{
-          zIndex: index,
+          zIndex: index + 2,
           transform: `translateY(${index * 10}px)`,
         }}
         className={cn(classes.notifyItem, type && type)}

@@ -1,0 +1,25 @@
+.sidebar {
+  height: 100vh;
+  position: relative;
+}
+
+.sidebarContent:global(.sidebar-hidden_true) {
+  overflow: hidden;
+  width: 0;
+}
+
+.resizer {
+  cursor: ew-resize;
+  height: 100%;
+  z-index: 0;
+  width: 20px;
+  position: absolute;
+  transform: translateX(-100%);
+  border-right: 10px solid aqua;
+  top: 0;
+  left: 0;
+}
+
+.resizer:global(.resizer-fullwidth) {
+  width: 100vw;
+}
