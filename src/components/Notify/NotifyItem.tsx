@@ -1,8 +1,8 @@
 import React from "react";
-import { INotifyItem } from "../../@types/notify";
 import cn from "classnames";
 
-import styles from "../../styles/notify.module.scss";
+import { INotifyItem } from "../../@types/notify";
+import classes from "../../styles/notify.module.scss";
 
 export const NotifyItem: React.FC<INotifyItem & { index: number }> = React.memo(
   ({ text, index, id, type }) => {
@@ -10,8 +10,11 @@ export const NotifyItem: React.FC<INotifyItem & { index: number }> = React.memo(
 
     return (
       <div
-        style={{ transform: `translateY(-${index * 100}%)` }}
-        className={cn(styles.notifyItem, type && type)}
+        style={{
+          zIndex: index,
+          transform: `translateY(${index * 10}px)`,
+        }}
+        className={cn(classes.notifyItem, type && type)}
       >
         <span>{text}</span>
       </div>

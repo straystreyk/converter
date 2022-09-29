@@ -1,5 +1,16 @@
 .notifyItem {
   position: fixed;
-  bottom: 1rem;
+  top: 1rem;
   right: 1rem;
+  width: 400px;
+  padding: 20px;
+  transition: 0.35s all ease;
+  box-shadow: 1px 1px 1px 1px black;
+}
+
+.notifyItem:global(.success) {
+  background: green;
+}
+.notifyItem:global(.error) {
+  background: red;
 }
