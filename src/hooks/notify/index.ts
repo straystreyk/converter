@@ -12,7 +12,7 @@ export const useNotify = () => {
     dispatch(removeNotifyReducer(id));
   };
 
-  const addNotify = (item: INotifyItem, removeMS = 2000) => {
+  const addNotify = (item: INotifyItem, removeMS = 3000) => {
     dispatch(addNewNotify(item));
 
     setTimeout(() => {

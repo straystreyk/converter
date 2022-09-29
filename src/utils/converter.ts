@@ -6,3 +6,7 @@ export const convert = (value: string, type: TConvertTypes) => {
 
   return window.btoa(value);
 };
+
+export const copyToClipBoard = async (value: string) => {
+  await navigator.clipboard.writeText(value);
+};

@@ -1,15 +1,14 @@
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Converter } from "./Converter";
-import { Notify } from "./Notify";
+import { Layout } from "./Layout";
+import { ConverterPage } from "../pages/ConverterPage";
 
 export const App: React.FC = () => {
   return (
-    <>
+    <Layout>
       <Routes>
-        <Route path="/" element={<Converter />} />
+        <Route path="/" element={<ConverterPage />} />
       </Routes>
-      <Notify />
-    </>
+    </Layout>
   );
 };
