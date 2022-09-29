@@ -30,6 +30,13 @@ export const Converter: React.FC = () => {
       <textarea value={value} onChange={changeTextArea} />
       <textarea value={result} disabled={true} />
       <button onClick={handleConvert}>convert</button>
+      <button
+        onClick={() =>
+          addNotify({ text: "pipa", id: Date.now(), type: "success" }, 120000)
+        }
+      >
+        asfafsasfafa
+      </button>
     </div>
   );
 };

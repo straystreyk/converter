@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev:client": "concurrently \"npm run watch:build\" \"npm run watch:server:client\"",
-    "dev:server": "concurrently \"npm run watch:build\" \"npm run watch:server\"",
+    "dev": "concurrently \"npm run watch:build\" \"npm run watch:server\"",
     "watch:build": "cross-env NODE_ENV=development webpack --watch",
-    "watch:server:client": "cross-env NODE_ENV=development node ./build/server/index.js",
     "watch:server": "cross-env NODE_ENV=development nodemon ./build/server/index.js",
     "build": "cross-env NODE_ENV=production webpack"
   },
@@ -40,6 +38,7 @@
     "@types/react-dom": "^18.0.5",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.38.1",
+    "autoprefixer": "^10.4.12",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
     "commitizen": "^4.2.5",
@@ -59,6 +58,7 @@
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
     "nodemon": "^2.0.16",
+    "postcss-loader": "^7.0.1",
     "prettier": "^2.6.0",
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",

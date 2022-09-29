@@ -8,6 +8,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 // const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const { getGlobals } = require("./config/get-globals");
+const autoprefixer = require("autoprefixer");
 
 const isDev = process.env.NODE_ENV === "development";
 const isProd = !isDev;
@@ -106,6 +107,9 @@ const ServerConfig = {
           {
             loader: "css-loader",
           },
+          {
+            loader: "postcss-loader",
+          },
           "sass-loader",
         ],
       },
@@ -118,6 +122,7 @@ const ClientConfig = {
   output: {
     path: path.join(__dirname, "build/client"),
     filename: isDev ? "js/[name].js" : "js/[name].[contenthash:8].js",
+    // filename: "js/[name].[contenthash:8].js",
     publicPath: "/",
   },
   mode: isDev ? "development" : "production",
@@ -208,6 +213,9 @@ const ClientConfig = {
           },
           {
             loader: "css-loader",
+          },
+          {
+            loader: "postcss-loader",
           },
           "sass-loader",
         ],

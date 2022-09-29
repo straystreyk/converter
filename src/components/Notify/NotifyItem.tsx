@@ -14,7 +14,6 @@ export const NotifyItem: React.FC<INotifyItem & { index: number }> = React.memo(
         className={styles.notifyItem}
       >
         <span>{text}</span>
-        <button onClick={() => removeNotify(id)}>Close</button>
       </div>
     );
   }
