@@ -3,13 +3,18 @@ import { ISidebar } from "../../@types/sidebar";
 
 const INITIAL_WIDTH = 0;
 
-const initialState = {
+interface ISidebarSlice {
+  sidebarOpts: ISidebar;
+}
+
+const initialState: ISidebarSlice = {
   sidebarOpts: {
     isDragging: false,
     x: 0,
     y: 0,
     width: INITIAL_WIDTH,
     isClose: true,
+    isHiddenContent: true,
   },
 };
 

@@ -14,12 +14,15 @@ export const Sidebar: React.FC = React.memo(() => {
 
   const onMouseDown = React.useCallback(
     (e: React.MouseEvent) => {
+      e.stopPropagation();
+
       updateSidebar({
         ...sidebarOpts,
         isDragging: true,
         x: e.clientX,
         y: e.clientY,
-        isClose: sidebarOpts.width < LIMIT_BEFORE_EXIT,
+        isClose: sidebarOpts.width === 0,
+        isHiddenContent: sidebarOpts.width < LIMIT_BEFORE_EXIT,
       });
     },
     [sidebarOpts, updateSidebar]
@@ -28,42 +31,57 @@ export const Sidebar: React.FC = React.memo(() => {
   const resizeFrame = React.useCallback(
     (e: React.MouseEvent) => {
       const { isDragging, x, width: initialWidth } = sidebarOpts;
-      if (isDragging) {
+      if (isDragging && x) {
         const xDiff = Math.abs(x - e.clientX);
         const width =
-          x < e.clientX ? +initialWidth - xDiff : initialWidth + xDiff;
+          x < e.clientX ? initialWidth - xDiff : initialWidth + xDiff;
 
         if (typeof window !== "undefined" && width >= window.innerWidth / 2)
           return;
 
-        updateSidebar({ ...sidebarOpts, x: e.clientX, y: e.clientY, width });
+        updateSidebar({
+          ...sidebarOpts,
+          x: e.clientX,
+          y: e.clientY,
+          width,
+          isClose: sidebarOpts.width === 0,
+          isHiddenContent: sidebarOpts.width < LIMIT_BEFORE_EXIT,
+        });
       }
     },
     [updateSidebar, sidebarOpts]
   );
 
   const stopResize = React.useCallback(() => {
+    const currentWidth =
+      sidebarOpts.width < LIMIT_BEFORE_EXIT ? 0 : sidebarOpts.width;
+
     updateSidebar({
       ...sidebarOpts,
       isDragging: false,
-      width: sidebarOpts.width < LIMIT_BEFORE_EXIT ? 0 : sidebarOpts.width,
-      isClose: sidebarOpts.width < LIMIT_BEFORE_EXIT,
+      width: currentWidth,
+      isHiddenContent: sidebarOpts.width < LIMIT_BEFORE_EXIT,
+      isClose: currentWidth === 0,
     });
   }, [sidebarOpts, updateSidebar]);
 
+  React.useEffect(() => {
+    if (typeof window !== "undefined" && localStorage.getItem("sidebar")) {
+      updateSidebar(JSON.parse(localStorage.getItem("sidebar") as string));
+    }
+  }, []);
+
   return (
     <div
-      role="toolbar"
       style={{
         ...styles,
         width: `${sidebarOpts.width}px`,
       }}
-      className={classes.sidebar}
+      className={cn(classes.sidebar, `sidebar-close_${sidebarOpts.isClose}`)}
       onMouseMove={resizeFrame}
       onMouseUp={stopResize}
     >
       <div
-        role="toolbar"
         onMouseDown={onMouseDown}
         className={cn(
           classes.resizer,
@@ -73,7 +91,10 @@ export const Sidebar: React.FC = React.memo(() => {
       <div
         className={cn(
           classes.sidebarContent,
-          `sidebar-hidden_${sidebarOpts.isClose}`
+          (sidebarOpts.width < LIMIT_BEFORE_EXIT && sidebarOpts.isDragging) ||
+            sidebarOpts.isHiddenContent
+            ? "sidebar-content-hidden_true"
+            : "sidebar-content-hidden_false"
         )}
       >
         SIDEBAR

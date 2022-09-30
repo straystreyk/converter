@@ -6,6 +6,7 @@ export const useSidebar = () => {
   const dispatch = useDispatch();
 
   const update = (newOpts: ISidebar) => {
+    localStorage.setItem("sidebar", JSON.stringify(newOpts));
     dispatch(updateSidebar(newOpts));
   };
 

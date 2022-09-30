@@ -5,6 +5,7 @@ import { convert } from "../../utils/converter";
 import { useInput } from "../../hooks/useInput";
 import { useCopy } from "../../hooks/useCopy";
 import { TConvertTypes } from "../../@types/converter";
+import { useTranslation } from "react-i18next";
 
 export const ConverterWorkspace: React.FC<{
   type: TConvertTypes;
@@ -13,6 +14,7 @@ export const ConverterWorkspace: React.FC<{
   const { copy } = useCopy();
   const { value, handleChange } = useInput();
   const { value: result, setValue: setValueResult } = useInput();
+  const { t } = useTranslation();
 
   const changeTextArea = React.useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -43,12 +45,13 @@ export const ConverterWorkspace: React.FC<{
     <div className="converter-workspace">
       <textarea value={value} onChange={changeTextArea} />
       <textarea
-        className={cn(result && classes.textAreaResult)}
+        className={cn(classes.textAreaResult, !result && "disabledResult")}
         onClick={handleResult}
         defaultValue={result}
         disabled={!result}
         readOnly
       />
+      <div>{t("converter")}</div>
       <button onClick={handleConvert}>convert</button>
     </div>
   );

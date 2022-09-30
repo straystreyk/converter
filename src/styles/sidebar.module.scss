@@ -1,9 +1,10 @@
 .sidebar {
   height: 100vh;
   position: relative;
+  user-select: none;
 }
 
-.sidebarContent:global(.sidebar-hidden_true) {
+.sidebarContent:global(.sidebar-content-hidden_true) {
   overflow: hidden;
   width: 0;
 }
@@ -12,14 +13,18 @@
   cursor: ew-resize;
   height: 100%;
   z-index: 0;
-  width: 20px;
   position: absolute;
   transform: translateX(-100%);
-  border-right: 10px solid aqua;
+  border-right: 5px solid aqua;
   top: 0;
   left: 0;
-}
+  transition: 0.3s border-right-color 0.05s ease-in;
 
-.resizer:global(.resizer-fullwidth) {
-  width: 100vw;
+  &:global(.resizer-fullwidth) {
+    width: 100vw;
+  }
+
+  &:hover {
+    border-right-color: black;
+  }
 }

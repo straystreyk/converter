@@ -9,6 +9,8 @@ import { App } from "../src/components/app";
 import { Request } from "express";
 import { TMeta } from "./meta";
 
+import en from "../src/i18n/en.json";
+
 export const prepareTemplate = async (
   preloadedState: StoreStateType,
   req: Request,
@@ -38,6 +40,10 @@ export const prepareTemplate = async (
       window._SSR_STORE_STATE_ = 
       ${JSON.stringify(initStore(preloadedState).getState())};
       </script>
+      <script type="text/javascript"> 
+        window.initialI18nStore = ${JSON.stringify(en)};
+        window.initialLanguage = "en";
+      </script> 
     `
     )
     .replace("__META_TITLE__", meta.title)

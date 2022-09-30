@@ -4,13 +4,30 @@
   right: 1rem;
   width: 400px;
   padding: 20px;
-  transition: 0.35s all ease;
   box-shadow: 1px 1px 1px 1px black;
+
+  &:global(.success) {
+    background: green;
+  }
+  &:global(.error) {
+    background: red;
+  }
 }
 
-.notifyItem:global(.success) {
-  background: green;
+.notifyEnter {
+  opacity: 0;
 }
-.notifyItem:global(.error) {
-  background: red;
+
+.notifyEnterActive {
+  opacity: 1;
+  transition: 0.5s all ease-in;
+}
+
+.notifyExit {
+  opacity: 1;
+}
+
+.notifyExitActive {
+  opacity: 0;
+  transition: 0.5s all ease-in;
 }

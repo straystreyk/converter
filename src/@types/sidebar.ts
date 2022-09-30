@@ -1,7 +1,8 @@
 export interface ISidebar {
-  isDragging: boolean;
-  x: number;
-  y: number;
+  isDragging?: boolean;
+  x?: number;
+  y?: number;
   width: number;
   isClose: boolean;
+  isHiddenContent: boolean;
 }

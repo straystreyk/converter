@@ -5,16 +5,20 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import { initStore } from "./store/store";
+import "./i18n";
 
 import "./index.module.scss";
 
 const container = document.getElementById("app") as HTMLElement;
 
-const root = ReactDOM.hydrateRoot(
-  container,
-  <BrowserRouter>
-    <Provider store={initStore(window._SSR_STORE_STATE_)}>
-      <App />
-    </Provider>
-  </BrowserRouter>
-);
+const AppToRender = () => {
+  return (
+    <BrowserRouter>
+      <Provider store={initStore(window._SSR_STORE_STATE_)}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  );
+};
+
+const root = ReactDOM.hydrateRoot(container, <AppToRender />);
