@@ -4,9 +4,13 @@
   user-select: none;
 }
 
+.sidebarContent {
+  transition: 0.35s all ease;
+}
+
 .sidebarContent:global(.sidebar-content-hidden_true) {
-  overflow: hidden;
   width: 0;
+  opacity: 0;
 }
 
 .resizer {
@@ -18,7 +22,7 @@
   border-right: 5px solid aqua;
   top: 0;
   left: 0;
-  transition: 0.3s border-right-color 0.05s ease-in;
+  transition: 0.3s border-right-color 0.05s ease;
 
   &:global(.resizer-fullwidth) {
     width: 100vw;

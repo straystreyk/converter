@@ -55,14 +55,17 @@ export const Sidebar: React.FC = React.memo(() => {
   const stopResize = React.useCallback(() => {
     const currentWidth =
       sidebarOpts.width < LIMIT_BEFORE_EXIT ? 0 : sidebarOpts.width;
-
-    updateSidebar({
+    const newOpts = {
       ...sidebarOpts,
       isDragging: false,
       width: currentWidth,
       isHiddenContent: sidebarOpts.width < LIMIT_BEFORE_EXIT,
       isClose: currentWidth === 0,
-    });
+    };
+
+    localStorage.setItem("sidebar", JSON.stringify(newOpts));
+
+    updateSidebar(newOpts);
   }, [sidebarOpts, updateSidebar]);
 
   React.useEffect(() => {
